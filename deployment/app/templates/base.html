@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="shortcut icon" href="https://s3.amazonaws.com/django-blog/ico/favicon_v2.ico">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css" rel="stylesheet">
+    <title>{% block title %} {% endblock %}</title>
+
+    <style>
+        /* Pad each section 60 pixels top and bottom */
+        section{
+            padding: 80px 0;
+        }
+    </style>
+  </head>
+  <body>
+
+    <!-- Navbar -->
+    <!-- When below medium sized screens we show the toggle button, but otherwise we show expanded navbar -->
+    <nav class="navbar navbar-expand-md navbar-light">
+        <!-- Container will be 100% width until xxl screens -->
+        <div class="container-xxl">
+            <a href = "{{ url_for('index')}}" class = "navbar-brand">
+                <span>Poetica</span>
+            </a>
+            <!-- Mobile nav toggle button -->
+            <!-- This will toggle element with class of collapse -->
+            <!-- We want to target our list of links as a collapsable section -->
+            <button class = "navbar-toggler" type = "button" data-bs-toggle = "collapse" data-bs-target = "#main-nav">
+                <span class = "navbar-toggler-icon"></span>
+            </button>
+
+            <!-- Navbar links -->
+            <!-- Justify contents to the right and align contents to center -->
+            <div class = "collapse navbar-collapse justify-content-end align-center" id = "main-nav">
+                <ul class = "navbar-nav">
+                    <li class = "nav-item">
+                        <a href = "{{ url_for('generate')}}" class = "nav-link">Generate</a>
+                    </li>
+                    <li class = "nav-item">
+                        <a href = "{{ url_for('library')}}" class = "nav-link">Library</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    {% block content %}{% endblock %}
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+    
+  </body>
+</html>

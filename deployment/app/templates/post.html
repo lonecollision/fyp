@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<section>
+    <!-- 100% in width until it reaches large breakpoint at which point it centralises -->
+    <div class="container-lg">
+         <!-- Justify all columns to the center of the row and align them in the center -->
+        <div class="row justify-content-center align-items-center">
+            <!-- For small screens and over, take up 10 columns of width, but before that take up all columns -->
+            <div class="col-sm-10 text-start">
+                <h1>
+                    <div class="display-6">{% block title %}{{ post['title'] }}{% endblock %}</div>
+                </h1>
+                <span class="badge bg-secondary mb-4">{{ post['created'] }}</span>
+                <pre class="mb-4">{{ post['content'] }}</pre>
+                <div class="input-group">
+                    <input type="text" class="form-control me-2 share-url" value="http://127.0.0.1:5000{{ url_for('post', post_id=post['id']) }}">
+                    <div class="tt" data-bs-placement="bottom" title="Copy to clipboard">
+                        <button class="btn btn-secondary share-btn" type="button"><span class="bi bi-clipboard"></span></button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<script>
+    const button = document.querySelector('.share-btn')
+    const url    = document.querySelector('.share-url')
+    button.addEventListener('click', () => {
+        navigator.clipboard.writeText(url.value)
+    })
+</script>
+<script>
+    const tooltips = document.querySelectorAll('.tt')
+    tooltips.forEach(t => {
+        new bootstrap.Tooltip(t)
+    })
+</script>
+{% endblock %}

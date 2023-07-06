@@ -1,0 +1,72 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<section class="bg-light">
+    <div class="container-lg">
+        <div class="row justify-content-center align-items-center">
+            <div class="col-md-10 text-start">
+                <p class="lead">Before writing your poem, have a read through the points below.</p>
+                <div class="list-unstyled">
+                    <ul>
+                        <li>
+                            <p>This is meant to be used to assist your creative writing process, so feel free to change up what has been generated!</p>
+                        </li>
+                        <li>
+                            <p>You're able to generate over and over, just keep an eye on what you leave in the <em>content</em> box before generating again.</p>
+                        </li>
+                        <li>
+                            <p>Don't constrain yourself to generated text that has messy logic.
+                               Make use of what you find useful and feel free to discard the rest.
+                            </p>
+                        </li>
+                    </ul>
+                </div>
+                
+                
+            </div>
+        </div>
+    </div>
+</section>
+<section>
+    <!-- 100% in width until it reaches large breakpoint at which point it centralises -->
+    <div class="container-lg">
+        <div class="row justify-content-center align-items-center">
+            <!-- For large screens and over, take up 10 columns of width, but before that take up all columns -->
+            <div class="col-md-10 text-start">
+                <h1>
+                    <div class="display-2">New Poem</div>
+                    <p class="lead">Enter the title of your poem and (optionally) its first line(s).</p>
+                </h1>
+                <form action="/generate" method="post">
+                    <label for="title" class="form-label">Title:</label>
+                    <input type="text" name="title" class="form-control mb-4" id="title" maxlength=100 placeholder="e.g. A hug that warms the heart" value="{{ request.form['title'] }}" required>
+                    <label for="content" class="form-label">Content (optional):</label>
+                    <textarea id="content" name="content" class="form-control mb-4" maxlength=650 placeholder="e.g. They hug like no other,"style="height: 200px" value="{{ request.form['content'] }}">{{ current_generation['body'] }}</textarea>
+                    <button type="submit" class="btn btn-secondary">Generate</button>
+                    <button type="submit" id="libraryPost" class="btn btn-secondary" formaction="/create" formmethod="POST" disabled>Post to library</button>
+                </form>
+            </div>
+        </div>
+            
+    </div>
+</section>
+<style>
+    textarea {
+        resize: none;
+    }
+</style>
+<script>
+    document.getElementById('content').addEventListener('input', success)
+    document.getElementById('title').addEventListener('input', success)
+
+    function success() {
+        if(document.getElementById('content').value=="" || document.getElementById('title').value=="") {
+            document.getElementById('libraryPost').disabled = true;
+        }
+        else {
+            document.getElementById('libraryPost').disabled = false;
+        }
+    }
+</script>
+{% endblock %}
+

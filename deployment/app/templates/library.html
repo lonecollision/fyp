@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<section>
+    <!-- 100% in width until it reaches large breakpoint at which point it centralises -->
+    <div class="container-lg">
+        <!-- Justify all columns to the center of the row and align them in the center -->
+        <div class="row justify-content-center align-items-center">
+            <!-- For large screens and over, take up 10 columns of width, but before that take up all columns -->
+            <div class="col-lg-10 text-start">
+                <h1>
+                    <div class="display-2">{% block title %}Library{% endblock %}</div>
+                    <p class="lead text-muted">An archive of all generated poems!</p>
+                </h1>
+            </div>
+        </div>
+        <hr>
+        {% for post in posts %}
+        <!-- Justify all columns to the center of the row and align them in the center -->
+        <div class="row justify-content-center align-items-center mb-4">
+            <!-- For large screens and over, take up 6 columns of width, but before that take up all columns -->
+            <div class="col-lg-10 text-start">
+                <a href="{{ url_for('post', post_id=post['id']) }}" class="link-secondary">
+                    <h1>
+                        <div class="display-6">{{ post['title'] }}</div>
+                    </h1>
+                </a>
+                <span class="badge bg-secondary">{{ post['created'] }}</span>
+            </div>
+        </div>
+        <hr>
+        {% endfor %}
+    </div>
+</section>
+{% endblock %}

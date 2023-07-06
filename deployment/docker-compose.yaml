@@ -1,0 +1,24 @@
+version: '1.0'
+
+services:
+  webapp:
+    build: app/
+    ports:
+      - "5000:5000"
+    volumes:
+      - db-data:/app/data
+
+  torchserve-mar:
+    image: poetica:v1
+    ports:
+      - "8080:8080"
+      - "8081:8081"
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              count: 1
+              capabilities: [gpu]
+volumes:
+  db-data:

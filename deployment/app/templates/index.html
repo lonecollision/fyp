@@ -1,0 +1,85 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <!-- Intro -->
+    <section>
+        <!-- 100% in width until it reaches large breakpoint at which point it centralises -->
+        <div class="container-lg">
+            <!-- Justify all columns to the center of the row and align them in the center -->
+            <div class="row justify-content-center align-items-center">
+                <!-- For small sized screens, the column will be size 12, once at medium size it is size 5 -->
+                <!-- For small sized screens, the text is centered, once at medium size it is shifted left -->
+                <div class="col-md-5 text-center text-md-start">
+                    <h1>
+                        <div class="display-2">Poetica</div>
+                        <div class="display-5 text-muted">Generate Your Poem Ideas</div>
+                    </h1>
+                    <p class="lead my-4 text-muted">Make use of a model trained on thousands of poems to generate poetry of your own.</p>
+                    <a href="{{ url_for('generate')}}" class="btn btn-secondary bt-large">Generate Now</a>
+                </div>
+                <!-- Display image as block when we get to medium sized screens, any smaller display as none -->
+                <div class="col-md-5 text-center d-none d-md-block">
+                    <!-- Make image 100% the width of the parent element (the column) -->
+                    <!-- <img class = "img-fluid" src = "/static/deli.png"> -->
+                    <img class = "img-fluid" src="{{url_for('static', filename='74d776116389bbc954927cd2c23a5e19.gif')}}" />
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features -->
+    <section class="bg-light">
+        <!-- 100% in width until it reaches large breakpoint at which point it centralises -->
+        <div class="container-lg">
+            <!-- Justify all columns to the center of the row and align them in the center -->
+            <div class="row justify-content-center align-items-center">
+                <!-- For small sized screens, the column will be size 12, once at medium size it is size 5 -->
+                <!-- For small sized screens, the text is centered, once at medium size it is shifted left -->
+                <div class="col-md-5 text-center text-md-start">
+                    <h1>
+                        <div class="display-6">Trained on <mark>~30,000 poems</mark></div>
+                    </h1>
+                </div>
+                <!-- For small sized screens, the column will be size 12, once at medium size it is size 5 -->
+                <!-- For small sized screens, the text is centered, once at medium size it is shifted left -->
+                <div class="col-md-5 text-center text-md-start">
+                    <p class="lead text-muted">
+                        The dataset used to train Poetica consists of poems from a variety of online archives including 
+                        <a href="https://www.poetryfoundation.org/" class="link-dark">Poetry Foundation</a>
+                        and 
+                        <a href="https://poets.org/" class="link-dark">poets.org</a>.
+                    </p>
+                </div>   
+            </div>
+        </div>
+    </section>
+
+    <section>
+        <!-- 100% in width until it reaches large breakpoint at which point it centralises -->
+        <div class="container-lg">
+            <!-- Justify all columns to the center of the row and align them in the center -->
+            <div class="row justify-content-center align-items-center">
+                <!-- For small sized screens, the column will be size 12, once at medium size it is size 5 -->
+                <!-- For small sized screens, the text is centered, once at medium size it is shifted left -->
+                <div class="col-md-5 text-center text-md-start">
+                    <h1>
+                        <div class="display-6">
+                            Browse a 
+                            <mark>library</mark> 
+                            of all user generated poems
+                        </div>
+                    </h1>
+                </div>
+                <!-- For small sized screens, the column will be size 12, once at medium size it is size 5 -->
+                <!-- For small sized screens, the text is centered, once at medium size it is shifted left -->
+                <div class="col-md-5 text-center text-md-start">
+                    <p class="lead text-muted">
+                        All generations are archived in the
+                        <a href="{{ url_for('library')}}" class="link-dark">library</a>
+                        for public viewing.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock %}
